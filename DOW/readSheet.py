@@ -19,10 +19,10 @@ def Extremidades(row, column, df):
 def lePlanilha(cell, df, row, column):
 
     ampRow, ampColumn = Extremidades(row, column, df)
-    if(ampRow==1 or pd.isnull(df.iat[row-1,column])):
 
-        print("Título da coluna:")
+    if(row==0 or pd.isnull(df.iat[row-1,column])):
 
-    print(str(cell) + ' | ', end = '')
-
-
+        print("Título da coluna: " + str(cell))
+        print("Valores: ")
+    else:
+        print(str(cell))
