@@ -16,3 +16,6 @@ def LerPlanilha():
         listaPlanilha[sheets].CriarTabela(df)
 
 LerPlanilha()
+print(listaPlanilha[0].listaTabela[0].valores)
+print(listaPlanilha[1].listaTabela[0].valores)
+print(listaPlanilha[1].listaTabela[1].valores)
