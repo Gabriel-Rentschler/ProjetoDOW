@@ -10,8 +10,8 @@ class Planilha:
         self.listaTabela = []
 
     def CriarTabela(self, df):
-        print('Tabela 1 da planilha ' + self.nome)
 
+        tabelaCriada=False
         tabelaColuna=[]
         tabelaLinha=[]
 
@@ -25,14 +25,15 @@ class Planilha:
                     tabelaLinha.append(cell)
                     #readSheet.lePlanilha(cell, df, row, column)
             
-            if tabelaLinha==[]:
-                newTabela = tabela.Tabela('Tabela', len(tabelaColuna), len(tabelaColuna), tabelaColuna)
+            if tabelaLinha==[] and tabelaCriada==False:
+                newTabela = tabela.Tabela('Tabela', len(tabelaColuna[0]), len(tabelaColuna), tabelaColuna)
                 self.listaTabela.append(newTabela)
 
                 tabelaColuna=[]
-            else:    
+                tabelaCriada=True
+            elif tabelaLinha!=[]:    
                 tabelaColuna.append(tabelaLinha)
-
-        newTabela = tabela.Tabela('Tabela', len(tabelaColuna), len(tabelaColuna), tabelaColuna)
-        self.listaTabela.append(newTabela)
-        print(self.listaTabela)
+                tabelaCriada=False
+        if tabelaColuna!=[]:
+            newTabela = tabela.Tabela('Tabela', len(tabelaColuna[0]), len(tabelaColuna), tabelaColuna)
+            self.listaTabela.append(newTabela)
