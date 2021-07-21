@@ -12,17 +12,17 @@ class Planilha:
         tabelaCriada=False
         tabelaColuna=[]
         tabelaLinha=[]
+        linhaVazia=True
 
         for row in range(self.linhas):
             tabelaLinha=[]
-            linhaVazia=True
 
             for column in range(self.colunas):
                 cell = df.iat[row, column]
 
                 if pd.notnull(cell):
                     linhaVazia=False
-                
+
                 tabelaLinha.append(cell)
                 #readSheet.lePlanilha(cell, df, row, column)
 

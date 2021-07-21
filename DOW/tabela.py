@@ -7,9 +7,9 @@ class Tabela:
         self.valores = valores
 
     def MostraValores(self):
-        for lin in range(self.linhas):
+        for col in range(self.colunas):
             text=[]
-            for col in range(self.colunas):
+            for lin in range(self.linhas):
                 text.append(self.valores[col][lin])
 
             print(text)
