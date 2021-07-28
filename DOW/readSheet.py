@@ -1,10 +1,17 @@
 import pandas as pd
+import planilha
 
-def lePlanilha(cell, df, row, column):
+#Função para apresentar os dados de uma planilha de forma organizada para a API ler em seguida.
+def lePlanilha(planilha):
 
-    if(row==0 or pd.isnull(df.iat[row-1,column])):
+    print("Planilha: " + planilha.nome)
+    print("Linhas: " + str(planilha.listaTabela[0].linhas))
+    print("Colunas: " + str(planilha.listaTabela[0].colunas))
 
-        print("Título da coluna: " + str(cell))
+    for col in range(0, planilha.listaTabela[0].colunas):
+
+        print("Título da coluna: " + planilha.listaTabela[0].valores[0][col])
         print("Valores: ")
-    else:
-        print(str(cell))
+        for lin in range(1, planilha.listaTabela[0].linhas):
+
+            print(planilha.listaTabela[0].valores[lin][col])
