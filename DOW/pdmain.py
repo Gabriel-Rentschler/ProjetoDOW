@@ -1,6 +1,6 @@
 import pandas as pd
 import sys
-import readSheet, planilha
+import readSheet, planilha, textoparafala
 
 #sys.argv se refere aos argumentos passados na hora de rodar o programa. No caso o caminho do arquivo excel a ser lido está no primeiro argumento.
 #Ex.: python3 pdmain.py tabelastest/tables2.xlsx
@@ -27,4 +27,5 @@ def LerPlanilha():
 
 
 LerPlanilha()
-readSheet.lePlanilha(listaPlanilha[0])
+#readSheet.lePlanilha(listaPlanilha[0])
+textoparafala.CriarAudio(listaPlanilha[0].listaTabela[0].valores[0][0])
