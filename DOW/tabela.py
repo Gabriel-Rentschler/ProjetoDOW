@@ -14,3 +14,10 @@ class Tabela:
                 text.append(self.valores[col][lin])
 
             print(text)
+
+    def mostraColuna(self, col):
+        text = []
+        for lin in range(1, self.linhas):
+            text.append(self.valores[lin][col])
+
+        return text
