@@ -7,7 +7,7 @@ class Grafico():
         self.x = x
         self.y = y
 
-    def CriarGrafico(self, tabela):
+    def CriarGrafico(self, tabela, tipoGrafico):
         print('Título: ')
         print(self.titulo)
 
@@ -23,6 +23,11 @@ class Grafico():
 
         var_df = pd.DataFrame(dataframe, columns=['Col1', 'Col2'])
 
-        var_df.plot.bar(x='Col1', y='Col2')
+        if tipoGrafico == 0:
+            var_df.plot.line(x='Col1', y='Col2')
+        elif tipoGrafico == 1:
+            var_df.plot.bar(x='Col1', y='Col2')
+        else:
+            var_df.plot.pie(x='Col1', y='Col2')
         plt.show()
         

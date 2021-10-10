@@ -16,6 +16,7 @@ class Planilha:
         tabelaLinha=[]
 
         #Para cada linha o programa verifica todas as colunas da planilha e as coloca em tabelaLinha.
+        
         for row in range(self.linhas):
             tabelaLinha=[]
             linhaVazia=True

@@ -6,11 +6,10 @@ import readSheet, planilha, grafico, textoparafala
 #Ex.: python3 pdmain.py tabelastest/tables2.xlsx
 #               ^                  ^
 #             sys.argv[0]      sys.argv[1]
-path = sys.argv[1]
-listaPlanilha=[]
+
 
 #Função para guardar a lista de planilhas de tabelas. Lê todo o arquivo e guarda no programa.
-def LerPlanilha():
+def LerPlanilha(listaPlanilha, path):
     #Abre o arquivo excel
     xl = pd.ExcelFile(path)
     #Guarda número de planilhas que tem dentro do arquivo
@@ -25,19 +24,13 @@ def LerPlanilha():
         listaPlanilha.append(newPlanilha)
         listaPlanilha[sheets].CriarTabela(df)
 
-LerPlanilha()
+def lerTabela(listaPlanilha):
+    try:
+        readSheet.lePlanilha(listaPlanilha[0])
+    except Exception:
+        print('')
+    #textoparafala.CriarAudio(listaPlanilha[0].listaTabela[0].valores[0][0])
 
-while True:
-    opt = input('Deseja ouvir detalhes da planilha ou gerar um gráfico?\n')
-
-    if opt == 'detalhes':
-        try:
-            readSheet.lePlanilha(listaPlanilha[0])
-        except Exception:
-            print('')
-        #textoparafala.CriarAudio(listaPlanilha[0].listaTabela[0].valores[0][0])
-    elif opt == 'grafico':
-        newgrafico = grafico.Grafico(listaPlanilha[0].listaTabela[0].valores[0][0] + ' por ' + listaPlanilha[0].listaTabela[0].valores[0][1], 0, 1)
-        newgrafico.CriarGrafico(listaPlanilha[0].listaTabela[0])
-    elif opt == 'sair':
-        sys.exit(0)
+def gerarGrafico(listaPlanilha, tipoGrafico):
+    newgrafico = grafico.Grafico(listaPlanilha[0].listaTabela[0].valores[0][0] + ' por ' + listaPlanilha[0].listaTabela[0].valores[0][1], 0, 1)
+    newgrafico.CriarGrafico(listaPlanilha[0].listaTabela[0], tipoGrafico)
