@@ -3,3 +3,4 @@ simpleaudio
 matplotlib
 tkinter
 tkintertable
+xlsxwriter

@@ -7,6 +7,7 @@ class Tabela:
         self.valores = valores
 
     #Uma função de debug, mostra os valores na tabela
+    """
     def MostraValores(self):
         for col in range(self.colunas):
             text=[]
@@ -14,7 +15,7 @@ class Tabela:
                 text.append(self.valores[col][lin])
 
             print(text)
-
+    """
     def mostraColuna(self, col):
         text = []
         for lin in range(1, self.linhas):

@@ -6,7 +6,7 @@ import readSheet, planilha, grafico, textoparafala
 #Ex.: python3 pdmain.py tabelastest/tables2.xlsx
 #               ^                  ^
 #             sys.argv[0]      sys.argv[1]
-
+selPlanilha = 0
 
 #Função para guardar a lista de planilhas de tabelas. Lê todo o arquivo e guarda no programa.
 def LerPlanilha(listaPlanilha, path):
@@ -29,8 +29,10 @@ def lerTabela(listaPlanilha):
         readSheet.lePlanilha(listaPlanilha[0])
     except Exception:
         print('')
-    #textoparafala.CriarAudio(listaPlanilha[0].listaTabela[0].valores[0][0])
+    textoparafala.CriarAudio(listaPlanilha[0].listaTabela[0].valores[0][0])
 
 def gerarGrafico(listaPlanilha, tipoGrafico):
-    newgrafico = grafico.Grafico(listaPlanilha[0].listaTabela[0].valores[0][0] + ' por ' + listaPlanilha[0].listaTabela[0].valores[0][1], 0, 1)
-    newgrafico.CriarGrafico(listaPlanilha[0].listaTabela[0], tipoGrafico)
+    nomeColunas = list(listaPlanilha[selPlanilha].listaTabela[0].valores[0].keys())
+
+    newgrafico = grafico.Grafico('test', nomeColunas[0], nomeColunas[1])
+    newgrafico.CriarGrafico(listaPlanilha[selPlanilha].listaTabela[0], tipoGrafico)

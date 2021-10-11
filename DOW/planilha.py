@@ -12,36 +12,34 @@ class Planilha:
     #Função de gerar tabelas
     def CriarTabela(self, df):
         tabelaCriada=False
-        tabelaColuna=[]
-        tabelaLinha=[]
+        tabelaLinha={}
 
         #Para cada linha o programa verifica todas as colunas da planilha e as coloca em tabelaLinha.
         
-        for row in range(self.linhas):
-            tabelaLinha=[]
+        for row in range(1, df.shape[0]):
+            tabelaColuna={}
             linhaVazia=True
 
-            for column in range(self.colunas):
-                cell = df.iat[row, column]
+            for column in range(df.shape[1]):
                 
                 #Se na linha inteira tiver ao menos uma célula com dados, ela deixa de estar vazia
-                if pd.notnull(cell):
+                if pd.notnull(df.iat[row, column]):
                     linhaVazia=False
                 
-                tabelaLinha.append(cell)
+                tabelaColuna[df.iat[0,column]] = df.iat[row,column]
 
             #Se a linha estiver vazia e nenhuma tabela estiver criada, ele cria uma nova tabela.
             #Isso evita se tiver duas lihas vazias consecutivas para não criar uma tabela em branco.
             if linhaVazia==True and tabelaCriada==False:
-                newTabela = tabela.Tabela('Tabela', len(tabelaColuna), len(tabelaColuna[0]), tabelaColuna)
+                newTabela = tabela.Tabela('Tabela', len(tabelaLinha), len(tabelaLinha[0]), tabelaLinha)
                 self.listaTabela.append(newTabela)
 
-                tabelaColuna=[]
+                tabelaLinha={}
                 tabelaCriada=True
-            elif linhaVazia==False:    
-                tabelaColuna.append(tabelaLinha)
+            elif linhaVazia==False:
+                tabelaLinha[row-1] = tabelaColuna
                 tabelaCriada=False
         #Quando terminar o número de linhas o programa checa mais uma vez se não há alguma informação acumulada nas colunas.
-        if tabelaColuna!=[]:
-            newTabela = tabela.Tabela('Tabela', len(tabelaColuna), len(tabelaColuna[0]), tabelaColuna)
+        if tabelaLinha!={}:
+            newTabela = tabela.Tabela('Tabela', len(tabelaLinha), len(tabelaLinha[0]), tabelaLinha)
             self.listaTabela.append(newTabela)
